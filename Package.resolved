@@ -1,0 +1,41 @@
+{
+  "pins" : [
+    {
+      "identity" : "autoreleasepoolshim",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stefanspringer1/AutoreleasepoolShim",
+      "state" : {
+        "revision" : "d345d927f335db2d5e30e69ea943a045da9c16d0",
+        "version" : "1.0.3"
+      }
+    },
+    {
+      "identity" : "swift-argument-parser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-argument-parser",
+      "state" : {
+        "revision" : "0fbc8848e389af3bb55c182bc19ca9d5dc2f255b",
+        "version" : "1.4.0"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-syntax.git",
+      "state" : {
+        "revision" : "64889f0c732f210a935a0ad7cda38f77f876262d",
+        "version" : "509.1.1"
+      }
+    },
+    {
+      "identity" : "swiftutilities",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stefanspringer1/SwiftUtilities",
+      "state" : {
+        "revision" : "b056a6524ecec1b21743984010346600abd30b68",
+        "version" : "0.1.36"
+      }
+    }
+  ],
+  "version" : 2
+}
