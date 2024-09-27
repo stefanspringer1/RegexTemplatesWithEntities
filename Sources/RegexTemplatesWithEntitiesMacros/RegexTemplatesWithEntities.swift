@@ -5,7 +5,21 @@ import SwiftSyntaxMacros
 import Utilities
 import Foundation
 
-extension String: Error {}
+/// An error with a description.
+///
+/// When printing such an error, its descrition is printed.
+struct ReplaceWithTemplateWithEntitiesError: LocalizedError, CustomStringConvertible {
+
+    private let message: String
+
+    public init(_ message: String) {
+        self.message = message
+    }
+    
+    public var description: String { message }
+    
+    public var errorDescription: String? { message }
+}
 
 public struct ReplaceWithTemplateWithEntities: ExpressionMacro {
     
@@ -22,7 +36,7 @@ public struct ReplaceWithTemplateWithEntities: ExpressionMacro {
         guard
             node.argumentList.count == 3
         else {
-            throw "need three arguments"
+            throw ReplaceWithTemplateWithEntitiesError("need three arguments")
         }
         
         let argumentList = Array(node.argumentList)
@@ -33,13 +47,13 @@ public struct ReplaceWithTemplateWithEntities: ExpressionMacro {
         guard
             let subject = subjectArgument.as(ExprSyntax.self)
         else {
-            throw "macro requires expression as first argument"
+            throw ReplaceWithTemplateWithEntitiesError("macro requires expression as first argument")
         }
         
         guard
             let regex = regexArgument.as(ExprSyntax.self)
         else {
-            throw "macro requires expression as second argument"
+            throw ReplaceWithTemplateWithEntitiesError("macro requires expression as second argument")
         }
         
         guard
@@ -47,7 +61,7 @@ public struct ReplaceWithTemplateWithEntities: ExpressionMacro {
             templateArgumentSegments.count == 1,
             case .stringSegment(let template)? = templateArgumentSegments.first
         else {
-            throw "macro requires static string literal as third argument"
+            throw ReplaceWithTemplateWithEntitiesError("macro requires static string literal as third argument")
         }
         
         let expr: ExprSyntax = """

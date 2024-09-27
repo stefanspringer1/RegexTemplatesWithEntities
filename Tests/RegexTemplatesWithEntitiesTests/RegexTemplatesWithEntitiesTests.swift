@@ -13,21 +13,21 @@ final class RegexTemplatesWithEntitiesTests: XCTestCase {
             )
     }
     
-    func testRegexTemplatesWithEntitiesWithOneGroup() throws {
+    func testRegexTemplatesWithEntitiesWithTwoGroups() throws {
         XCTAssertEqual(
             #replaceWithTemplateWithEntities(in: "123 hello!", replace: /([a-z]+)/, withTemplate: "$1 $1"),
             "123 hello hello!"
         )
     }
     
-    func testRegexTemplatesWithEntitiesWithOneGroupAndEntity() throws {
+    func testRegexTemplatesWithEntitiesWithTwoGroupsAndEntity() throws {
         XCTAssertEqual(
             #replaceWithTemplateWithEntities(in: "123 hello!", replace: /([a-z]+)/, withTemplate: "$1&amp;$1"),
             "123 hello&hello!"
         )
     }
     
-    func testRegexTemplatesWithEntitiesWithTwoGroups() throws {
+    func testRegexTemplatesWithEntitiesWithThreeGroups() throws {
         XCTAssertEqual(
             #replaceWithTemplateWithEntities(in: "123 hello!", replace: /([a-z])([a-z]+)/, withTemplate: "$1$2$2"),
             "123 helloello!"
