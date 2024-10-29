@@ -8,7 +8,7 @@ final class RegexTemplatesWithEntitiesTests: XCTestCase {
 
     func testTemplateResolving() throws {
         XCTAssertEqual(
-            ReplaceWithTemplateWithEntities.resolvedForm(forTemplate: "#1: $1 #1 (again): $1 #2: $2"),
+            ReplaceWithTemplateWithEntitiesTools.resolvedForm(forTemplate: "#1: $1 #1 (again): $1 #2: $2"),
             #"#1: \(match.output.1) #1 (again): \(match.output.1) #2: \(match.output.2)"#
             )
     }
