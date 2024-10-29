@@ -8,7 +8,7 @@ Example:
 
 ```swift
 // converting to a new text:
-print(#replacingWithTemplateWithEntities(in: "123 hello!", replace: /([a-z]+)/, withTemplate: "$1&amp;$1"))
+print(#replacingWithTemplateWithEntities(in: "123 hello!", replacing: /([a-z]+)/, withTemplate: "$1&amp;$1"))
 // prints "123 hello&hello!"
 
 // changing a given text:
@@ -22,7 +22,7 @@ Example with matching semantics `.unicodeScalar`:
 
 ```swift
 // converting to a new text:
-print(#replacingWithTemplateWithEntities(in: "a\u{0307}", replace: /([a-z])\x{0307}/.matchingSemantics(.unicodeScalar), withTemplate: "$1\u{0300}"))
+print(#replacingWithTemplateWithEntities(in: "a\u{0307}", replacing: /([a-z])\x{0307}/.matchingSemantics(.unicodeScalar), withTemplate: "$1\u{0300}"))
 // prints "à"
 
 // changing a given text:

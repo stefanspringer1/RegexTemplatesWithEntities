@@ -17,7 +17,7 @@ final class RegexTemplatesWithEntitiesTests: XCTestCase {
         
         // converting to a new text:
         XCTAssertEqual(
-            #replacingWithTemplateWithEntities(in: "123 hello!", replace: /([a-z]+)/, withTemplate: "$1 $1"),
+            #replacingWithTemplateWithEntities(in: "123 hello!", replacing: /([a-z]+)/, withTemplate: "$1 $1"),
             "123 hello hello!"
         )
         
@@ -32,7 +32,7 @@ final class RegexTemplatesWithEntitiesTests: XCTestCase {
         
         // converting to a new text:
         XCTAssertEqual(
-            #replacingWithTemplateWithEntities(in: "123 hello!", replace: /([a-z]+)/, withTemplate: "$1&amp;$1"),
+            #replacingWithTemplateWithEntities(in: "123 hello!", replacing: /([a-z]+)/, withTemplate: "$1&amp;$1"),
             "123 hello&hello!"
         )
         
@@ -47,7 +47,7 @@ final class RegexTemplatesWithEntitiesTests: XCTestCase {
         
         // converting to a new text:
         XCTAssertEqual(
-            #replacingWithTemplateWithEntities(in: "123 hello!", replace: /([a-z])([a-z]+)/, withTemplate: "$1$2$2"),
+            #replacingWithTemplateWithEntities(in: "123 hello!", replacing: /([a-z])([a-z]+)/, withTemplate: "$1$2$2"),
             "123 helloello!"
         )
         
@@ -62,7 +62,7 @@ final class RegexTemplatesWithEntitiesTests: XCTestCase {
         
         // converting to a new text:
         XCTAssertEqual(
-            #replacingWithTemplateWithEntities(in: "a\u{0307}", replace: /([a-z])\x{0307}/.matchingSemantics(.unicodeScalar), withTemplate: "$1\u{0300}"),
+            #replacingWithTemplateWithEntities(in: "a\u{0307}", replacing: /([a-z])\x{0307}/.matchingSemantics(.unicodeScalar), withTemplate: "$1\u{0300}"),
             "à"
         )
         

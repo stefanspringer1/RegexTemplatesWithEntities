@@ -7,18 +7,18 @@ import Foundation
 /// Example:
 ///
 /// ```swift
-/// print(#replacingWithTemplateWithEntities(in: "123 hello!", replace: /([a-z]+)/, withTemplate: "$1&amp;$1"))
+/// print(#replacingWithTemplateWithEntities(in: "123 hello!", replacing: /([a-z]+)/, withTemplate: "$1&amp;$1"))
 /// // prints "123 hello&hello!"
 /// ```
 ///
 /// Example with matching semantics `.unicodeScalar`:
 ///
 /// ```swift
-/// print(#replacingWithTemplateWithEntities(in: "a\u{0307}", replace: /([a-z])\x{0307}/.matchingSemantics(.unicodeScalar), withTemplate: "$1\u{0300}"))
+/// print(#replacingWithTemplateWithEntities(in: "a\u{0307}", replacing: /([a-z])\x{0307}/.matchingSemantics(.unicodeScalar), withTemplate: "$1\u{0300}"))
 /// // prints "à"
 /// ```
 @freestanding(expression)
-public macro replacingWithTemplateWithEntities(in subject: String, replace regex: any RegexComponent, withTemplate template: String) -> String = #externalMacro(module: "RegexTemplatesWithEntitiesMacros", type: "ReplacingWithTemplateWithEntities")
+public macro replacingWithTemplateWithEntities(in subject: String, replacing regex: any RegexComponent, withTemplate template: String) -> String = #externalMacro(module: "RegexTemplatesWithEntitiesMacros", type: "ReplacingWithTemplateWithEntities")
 
 /// This macro makes it possible to efficiently replace a regular expression with a template containing `$1`, `S2`, etc.
 ///
