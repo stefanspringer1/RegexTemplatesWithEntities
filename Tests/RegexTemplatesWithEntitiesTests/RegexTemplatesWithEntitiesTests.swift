@@ -14,31 +14,62 @@ final class RegexTemplatesWithEntitiesTests: XCTestCase {
     }
     
     func testRegexTemplatesWithEntitiesWithTwoGroups() throws {
+        
+        // converting to a new text:
         XCTAssertEqual(
-            #replaceWithTemplateWithEntities(in: "123 hello!", replace: /([a-z]+)/, withTemplate: "$1 $1"),
+            #replacingWithTemplateWithEntities(in: "123 hello!", replace: /([a-z]+)/, withTemplate: "$1 $1"),
             "123 hello hello!"
         )
+        
+        // changing a given text:
+        var changingText = "123 hello!"
+        #replaceWithTemplateWithEntities(in: changingText, replace: /([a-z]+)/, withTemplate: "$1 $1")
+        XCTAssertEqual(changingText, "123 hello hello!")
+        
     }
     
     func testRegexTemplatesWithEntitiesWithTwoGroupsAndEntity() throws {
+        
+        // converting to a new text:
         XCTAssertEqual(
-            #replaceWithTemplateWithEntities(in: "123 hello!", replace: /([a-z]+)/, withTemplate: "$1&amp;$1"),
+            #replacingWithTemplateWithEntities(in: "123 hello!", replace: /([a-z]+)/, withTemplate: "$1&amp;$1"),
             "123 hello&hello!"
         )
+        
+        // changing a given text:
+        var changingText = "123 hello!"
+        #replaceWithTemplateWithEntities(in: changingText, replace: /([a-z]+)/, withTemplate: "$1&amp;$1")
+        XCTAssertEqual(changingText, "123 hello&hello!")
+        
     }
     
     func testRegexTemplatesWithEntitiesWithThreeGroups() throws {
+        
+        // converting to a new text:
         XCTAssertEqual(
-            #replaceWithTemplateWithEntities(in: "123 hello!", replace: /([a-z])([a-z]+)/, withTemplate: "$1$2$2"),
+            #replacingWithTemplateWithEntities(in: "123 hello!", replace: /([a-z])([a-z]+)/, withTemplate: "$1$2$2"),
             "123 helloello!"
         )
+        
+        // changing a given text:
+        var changingText = "123 hello!"
+        #replaceWithTemplateWithEntities(in: changingText, replace: /([a-z])([a-z]+)/, withTemplate: "$1$2$2")
+        XCTAssertEqual(changingText, "123 helloello!")
+        
     }
     
     func testRegexTemplatesWithEntitiesCodepoints() throws {
+        
+        // converting to a new text:
         XCTAssertEqual(
-            #replaceWithTemplateWithEntities(in: "a\u{0307}", replace: /([a-z])\x{0307}/.matchingSemantics(.unicodeScalar), withTemplate: "$1\u{0300}"),
+            #replacingWithTemplateWithEntities(in: "a\u{0307}", replace: /([a-z])\x{0307}/.matchingSemantics(.unicodeScalar), withTemplate: "$1\u{0300}"),
             "à"
         )
+        
+        // changing a given text:
+        var changingText = "a\u{0307}"
+        #replaceWithTemplateWithEntities(in: changingText, replace: /([a-z])\x{0307}/.matchingSemantics(.unicodeScalar), withTemplate: "$1\u{0300}")
+        XCTAssertEqual(changingText, "à")
     }
      
 }
