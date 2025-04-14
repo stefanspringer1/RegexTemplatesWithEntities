@@ -2,7 +2,7 @@
 
 This package makes it possible to efficiently replace a regular expression with a template containing `$1`, `S2`, etc.
 
-Other than with the `RegexTemplates` package, character entities in the template of the (XML notation) form `&MY_CHARACTER_ENTITY;`, will be replaced by the according text. (The ampersand can be escaped using a backslash, this escapement will be removed by the macro.) You will get a compiler error if you have chosen a non-existing entity name.`
+Other than with the [RegexTemplates](https://github.com/stefanspringer1/RegexTemplates) package, character entities in the template of the (XML notation) form `&MY_CHARACTER_ENTITY;`, will be replaced by the according text. (The ampersand can be escaped using a backslash, this escapement will be removed by the macro.) You will get a compiler error if you have chosen a non-existing entity name.`
 
 Example:
 
@@ -31,3 +31,5 @@ var changingText = "a\u{0307}"
 print(changingText)
 // prints "à"
 ```
+
+Please note the description of the [RegexTemplates](https://github.com/stefanspringer1/RegexTemplates) package, especially the note on escaped characters.

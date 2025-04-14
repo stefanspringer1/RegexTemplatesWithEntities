@@ -15,7 +15,7 @@ final class RegexTemplatesWithEntitiesTests: XCTestCase {
     
     func testTemplateResolvingWithQuotes() throws {
         XCTAssertEqual(
-            ReplaceWithTemplateWithEntitiesTools.resolvedForm(forTemplate: #"#1: $1 #1 (again, but in quotes): "$1" #2: "$2""#),
+            ReplaceWithTemplateWithEntitiesTools.resolvedForm(forTemplate: #"#1: $1 #1 (again, but in quotes): \"$1\" #2: \"$2\""#),
             #"#1: \(match.output.1) #1 (again, but in quotes): \"\(match.output.1)\" #2: \"\(match.output.2)\""#
             )
     }
@@ -39,7 +39,7 @@ final class RegexTemplatesWithEntitiesTests: XCTestCase {
         
         // converting to a new text:
         XCTAssertEqual(
-            #replacingWithTemplateWithEntities(in: "123 hello!", replacing: /([a-z]+)/, withTemplate: #""$1" "$1""#),
+            #replacingWithTemplateWithEntities(in: "123 hello!", replacing: /([a-z]+)/, withTemplate: #"\"$1\" \"$1\""#),
             #"123 "hello" "hello"!"#
         )
         

@@ -25,7 +25,7 @@ struct ReplaceWithTemplateWithEntitiesError: LocalizedError, CustomStringConvert
 public struct ReplaceWithTemplateWithEntitiesTools {
     
     public static func resolvedForm(forTemplate template: String) ->  String {
-        return template.replacingOccurrences(of: #"""#, with: #"\""#).replacing(/\$([0-9]+)/.asciiOnlyCharacterClasses()) { match in
+        return template.replacing(/\$([0-9]+)/.asciiOnlyCharacterClasses()) { match in
             "\\(match.output.\(Int(match.output.1)!))"
         }
     }
