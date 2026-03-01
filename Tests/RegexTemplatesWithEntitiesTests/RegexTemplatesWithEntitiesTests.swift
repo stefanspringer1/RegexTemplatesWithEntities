@@ -9,14 +9,14 @@ final class RegexTemplatesWithEntitiesTests: XCTestCase {
     func testTemplateResolving() throws {
         XCTAssertEqual(
             ReplaceWithTemplateWithEntitiesTools.resolvedForm(forTemplate: "#1: $1 #1 (again): $1 #2: $2"),
-            #"#1: \((match.output.1 as Substring?) ?? "") #1 (again): \((match.output.1 as Substring?) ?? "") #2: \((match.output.2 as Substring?) ?? "")"#
+            #"#1: \(match.output.1 as Substring? ?? "") #1 (again): \(match.output.1 as Substring? ?? "") #2: \(match.output.2 as Substring? ?? "")"#
             )
     }
     
     func testTemplateResolvingWithQuotes() throws {
         XCTAssertEqual(
             ReplaceWithTemplateWithEntitiesTools.resolvedForm(forTemplate: #"#1: $1 #1 (again, but in quotes): \"$1\" #2: \"$2\""#),
-            #"#1: \((match.output.1 as Substring?) ?? "") #1 (again, but in quotes): \"\((match.output.1 as Substring?) ?? "")\" #2: \"\((match.output.2 as Substring?) ?? "")\""#
+            #"#1: \(match.output.1 as Substring? ?? "") #1 (again, but in quotes): \"\(match.output.1 as Substring? ?? "")\" #2: \"\(match.output.2 as Substring? ?? "")\""#
             )
     }
     
