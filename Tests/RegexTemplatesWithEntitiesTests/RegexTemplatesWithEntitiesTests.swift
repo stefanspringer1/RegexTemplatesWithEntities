@@ -9,14 +9,14 @@ final class RegexTemplatesWithEntitiesTests: XCTestCase {
     func testTemplateResolving() throws {
         XCTAssertEqual(
             ReplaceWithTemplateWithEntitiesTools.resolvedForm(forTemplate: "#1: $1 #1 (again): $1 #2: $2"),
-            #"#1: \(match.output.1) #1 (again): \(match.output.1) #2: \(match.output.2)"#
+            #"#1: \((match.output.1 as Substring?) ?? "") #1 (again): \((match.output.1 as Substring?) ?? "") #2: \((match.output.2 as Substring?) ?? "")"#
             )
     }
     
     func testTemplateResolvingWithQuotes() throws {
         XCTAssertEqual(
             ReplaceWithTemplateWithEntitiesTools.resolvedForm(forTemplate: #"#1: $1 #1 (again, but in quotes): \"$1\" #2: \"$2\""#),
-            #"#1: \(match.output.1) #1 (again, but in quotes): \"\(match.output.1)\" #2: \"\(match.output.2)\""#
+            #"#1: \((match.output.1 as Substring?) ?? "") #1 (again, but in quotes): \"\((match.output.1 as Substring?) ?? "")\" #2: \"\((match.output.2 as Substring?) ?? "")\""#
             )
     }
     
@@ -92,6 +92,18 @@ final class RegexTemplatesWithEntitiesTests: XCTestCase {
         var changingText = "a\u{0307}"
         #replaceWithTemplateWithEntities(in: changingText, replace: /([a-z])\x{0307}/.matchingSemantics(.unicodeScalar), withTemplate: "$1\u{0300}")
         XCTAssertEqual(changingText, "à")
+    }
+    
+    func testOptionals1() {
+        var text = "1auml2"
+        #replaceWithTemplateWithEntities(in: text, replace: /(\d)auml(\d)?/, withTemplate: #"$1\u{C4}$2"#)
+        XCTAssertEqual(text,"1Ä2")
+    }
+    
+    func testOptionals2() {
+        var text = "1auml"
+        #replaceWithTemplateWithEntities(in: text, replace: /(\d)auml(\d)?/, withTemplate: #"$1\u{C4}$2"#)
+        XCTAssertEqual(text,"1Ä")
     }
      
 }
